@@ -1,33 +1,39 @@
-#define OUTFILE "" //OUTPUT
+#define OUTFILE "dist/jfeed.user.js" //OUTPUT
 //#define BUILD_WITH_MUJS
 #include "build.h"
 //#include "mujscompiler.h"
 
-#define NAME        ""
-#define NAMESPACE   ""
-#define DESCRIPTION ""
+#define NAME        "Jfeed"
+#define NAMESPACE   "https://github.com/HimadriChakra12/jfeed.git"
+#define DESCRIPTION "A rss get using userscript"
 
 listmatch(
-    "",
+    "*://*/*",
     );
 
 listgrant(
-    "unsafeWindow",
-    "GM_download"
+        "GM_xmlhttpRequest" \
+        "GM_setClipboard" \
+        "GM_registerMenuCommand" \
+        "GM_addStyle" \
     );
 
 /* Custom @tag lines that don't have a fixed build_meta_t field. */
 listextra(
-    { "//NAME", "//Description" },
+    { "Source", "https://github.com/shevabam/get-rss-feed-url-extension.git" },
     );
 
-#define GROUPNAME group( \
-    "src/group/script.js", \
+#define CRAFT group( \
+        "src/craft/functions.js", \
+        "src/craft/rules.js", \
+        "src/craft/fetch.js", \
+        "src/craft/panel.js", \
+        "src/craft/launch.js", \
     )
  
 listorder(
     "src/start.js",
-    GROUPNAME
+    CRAFT
     "src/end.js",
     );
 

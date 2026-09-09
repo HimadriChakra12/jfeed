@@ -4,7 +4,7 @@ build: tools/build
 	./tools/build
 
 tools/build: tools/build.c tools/build.h
-	$(CC) -O2 -Wall -Wextra -o tools/build tools/build.c -I tools/build.h
+	$(CC) -O2 -Wall -Wextra -Wno-unused-function -o tools/build tools/build.c
 
 clean:
 	rm -rf dist tools/build
